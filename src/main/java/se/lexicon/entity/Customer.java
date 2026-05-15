@@ -18,7 +18,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(nullable = false, length = 100)
     private String firstName;
 
@@ -32,6 +31,10 @@ public class Customer {
     // Timestamp set automatically when the entity is first persisted
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
+
+    @OneToOne(optional = false, cascade =  CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 
     // One-to-one relationship with UserProfile, cascades all operations
     @OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
