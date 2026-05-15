@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "user_profiles")
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString(exclude = "customer")
 public class UserProfile {
 
     @Id

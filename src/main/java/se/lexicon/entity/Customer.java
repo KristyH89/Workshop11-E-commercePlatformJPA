@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import java.time.Instant;
 
 @Entity
@@ -11,6 +13,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString(exclude = "profile")
 public class Customer {
 
     // Primary key for the Customer entity
@@ -37,7 +40,7 @@ public class Customer {
     private Address address;
 
     // One-to-one relationship with UserProfile, cascades all operations
-    @OneToOne(optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(optional = true, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "profile_id")
     private UserProfile profile;
 
