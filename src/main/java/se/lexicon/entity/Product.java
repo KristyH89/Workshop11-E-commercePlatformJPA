@@ -60,6 +60,24 @@ public class Product {
     )
     @ToString.Exclude
     private Set<Promotion> promotions = new HashSet<>();
+
+    /* Helper method to maintain both sides of the bidirectional Many-to-Many relationship.
+       Ensures that when a promotion is added to this product, the product is also added
+       to the promotion's product collection. This keeps the in-memory state consistent
+       with the database relationship. */
+    public void addPromotion(Promotion promotion) {
+        promotions.add(promotion);
+        promotion.getProducts().add(this);
+    }
+
+    /* Helper method to safely remove a promotion from this product.
+       Also removes this product from the promotion's product collection to keep
+       the bidirectional relationship consistent and avoid stale references. */
+    public void removePromotion(Promotion promotion) {
+        promotions.remove(promotion);
+        promotion.getProducts().remove(this);
+    }
+
 }
 
 
