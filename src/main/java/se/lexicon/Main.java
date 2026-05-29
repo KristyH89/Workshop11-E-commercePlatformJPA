@@ -5,9 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import se.lexicon.entity.Address;
+import se.lexicon.entity.Category;
 import se.lexicon.entity.Customer;
 import se.lexicon.entity.UserProfile;
 import se.lexicon.repository.AddressRepository;
+import se.lexicon.repository.CategoryRepository;
 import se.lexicon.repository.CustomerRepository;
 import se.lexicon.repository.UserProfileRepository;
 
@@ -24,8 +26,8 @@ public class Main {
     public CommandLineRunner testData(
             CustomerRepository customerRepository,
             AddressRepository addressRepository,
-            UserProfileRepository userProfileRepository
-    ) {
+            UserProfileRepository userProfileRepository,
+            CategoryRepository categoryRepository) {
         return args -> {
 
             System.out.println("=== Running Part 1 Repository Tests ===");
@@ -51,12 +53,12 @@ public class Main {
             customer.setProfile(profile);
 
             // Save Customer (cascades to Address + UserProfile)
-           if (!customerRepository.existsByEmail(customer.getEmail())) {
-               customerRepository.save(customer);
-               System.out.println("Saved customer with ID: " + customer.getId());
-           } else {
-               System.out.println("Customer already exists.");
-           }
+            if (!customerRepository.existsByEmail(customer.getEmail())) {
+                customerRepository.save(customer);
+                System.out.println("Saved customer with ID: " + customer.getId());
+            } else {
+                System.out.println("Customer already exists.");
+            }
 
             // test queries
             System.out.println("\n=== Query Tests === ");
@@ -84,9 +86,26 @@ public class Main {
 
 
         };
+
+    }
+        // Testing CategoryRepository
+
+        @Bean
+                public CommandLineRunner testCategoryRepo(CategoryRepository categoryRepository) {
+            return args -> {
+                Category c = new Category();
+                c.setName("Books");
+                categoryRepository.save(c);
+
+                System.out.println(categoryRepository.findByNameIgnoreCase("books"));
+                System.out.println(categoryRepository.existsByNameIgnoreCase("books"));
+                System.out.println("Total categories: " + categoryRepository.count());
+
+            };
+        }
     }
 
 
 
 
-}
+
