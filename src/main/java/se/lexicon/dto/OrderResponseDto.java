@@ -17,7 +17,7 @@ public record OrderResponseDto(
         // ID of the customer who placed the order
         Long customerId,
 
-        // Current order status (e.g., CREATED,PAID, CANCELLED)
+        // Current order status (e.g., NEW,PAID, CANCELLED)
         OrderStatus status,
 
         // Customer email or name (optional, but useful)
