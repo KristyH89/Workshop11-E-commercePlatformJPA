@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public record CustomerRequest(
+public record CustomerRequestDto(
 
         // First name must not be empty
         @NotBlank(message = "First name is required")

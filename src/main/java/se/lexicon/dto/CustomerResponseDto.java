@@ -1,7 +1,7 @@
 package se.lexicon.dto;
 
 // DTO returned to the client after creating or fetching a customer
-public record CustomerResponse(
+public record CustomerResponseDto(
 
         // Database-generated ID
         Long id,
@@ -13,5 +13,5 @@ public record CustomerResponse(
         String email,
 
         // Nested DTO for address information
-        AddressResponse addressResponse
+        AddressResponseDto addressResponse
 ) {}
