@@ -7,7 +7,6 @@ import se.lexicon.dto.OrderRequestDto;
 import se.lexicon.dto.OrderResponseDto;
 import se.lexicon.entity.*;
 
-import java.time.Instant;
 import java.util.List;
 
 @Component
@@ -18,7 +17,7 @@ public class OrderMapper {
         if (request == null) return null;
 
         Order order = new Order();
-        order.setStatus(OrderStatus.NEW); // Status is an enum
+        order.setStatus(OrderStatus.CREATED); // Status is an enum
         order.setCustomer(customer);
 
         // Convert each OrderItemRequestDto into an OrderItem entity
