@@ -10,7 +10,7 @@ public interface ProductService {
     // Create a new product
     ProductResponseDto create(ProductRequestDto request);
 
-    // FInd a product by ID
+    // Find a product by ID
     ProductResponseDto findById(Long id);
 
     // Return all products
